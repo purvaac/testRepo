@@ -8,7 +8,7 @@ class Inventory:
     def stock(self, sku):
         return self._counts.get(sku, 0)
 
-    def reserve(self, sku, units):
+    def reserve_units(self, sku, units):
         """Take `units` of `sku` out of available stock."""
         available = self.stock(sku)
         if units > available:
