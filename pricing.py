@@ -1,6 +1,6 @@
 """Order pricing rules."""
 
-TIER_DISCOUNTS = {"standard": 0.0, "silver": 0.05, "gold": 0.10}
+TIER_DISCOUNTS = {"standard": 0.0, "silver": 0.05, "gold": 0.15}
 
 
 def compute_discount(price, tier):
