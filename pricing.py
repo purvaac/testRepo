@@ -9,9 +9,12 @@ def compute_discount(price, tier):
     return round(price * rate, 2)
 
 
-def apply_tax(amount, rate):
+def apply_tax(amount, rate, rounding="half_up"):
     """Return `amount` with tax at `rate` (e.g. 0.08) added."""
-    return round(amount * (1 + rate), 2)
+    taxed = amount * (1 + rate)
+    if rounding == "down":
+        return int(taxed * 100) / 100
+    return round(taxed, 2)
 
 
 def line_total(unit_price, quantity, tier):
