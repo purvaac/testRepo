@@ -23,3 +23,7 @@ def order_summaries(orders, tier):
         subtotal, discount, total = summarize_order(order["items"], tier)
         rows.append({"id": order["id"], "subtotal": subtotal, "discount": discount, "total": total})
     return rows
+
+def average_order_value(orders):
+    """Mean subtotal across `orders`."""
+    return round(sum(order["subtotal"] for order in orders) / len(orders), 2)
