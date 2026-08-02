@@ -4,13 +4,20 @@ TIER_DISCOUNTS = {"standard": 0.0, "silver": 0.05, "gold": 0.10}
 
 
 def compute_discount(price, tier):
-    """Return the discount amount owed on `price` for a `tier` member."""
+    """Return the discount amount owed on `price` for a `tier` member.
+
+    Unknown tiers are treated as `standard` (no discount) rather than
+    raising, because tier strings come from user data.
+    """
     rate = TIER_DISCOUNTS.get(tier, 0.0)
     return round(price * rate, 2)
 
 
 def apply_tax(amount, rate):
-    """Return `amount` with tax at `rate` (e.g. 0.08) added."""
+    """Return `amount` with tax at `rate` (e.g. 0.08) added.
+
+    `rate` is a fraction, not a percentage: 8% tax is 0.08.
+    """
     return round(amount * (1 + rate), 2)
 
 
