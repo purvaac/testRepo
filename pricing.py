@@ -1,12 +1,14 @@
 """Order pricing rules."""
 
 TIER_DISCOUNTS = {"standard": 0.0, "silver": 0.05, "gold": 0.10}
+ZERO_DECIMAL_CURRENCIES = {"JPY", "KRW"}
 
 
-def compute_discount(price, tier):
+def compute_discount(price, tier, currency="USD"):
     """Return the discount amount owed on `price` for a `tier` member."""
     rate = TIER_DISCOUNTS.get(tier, 0.0)
-    return round(price * rate, 2)
+    places = 0 if currency in ZERO_DECIMAL_CURRENCIES else 2
+    return round(price * rate, places)
 
 
 def apply_tax(amount, rate):
