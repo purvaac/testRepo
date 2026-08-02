@@ -11,10 +11,9 @@ class Inventory:
     def reserve(self, sku, units):
         """Take `units` of `sku` out of available stock."""
         available = self.stock(sku)
-        if units > available:
-            raise ValueError(f"cannot reserve {units} of {sku}: only {available} in stock")
-        self._counts[sku] = available - units
-        return units
+        reserved = min(units, available)
+        self._counts[sku] = available - reserved
+        return reserved
 
     def restock(self, sku, units):
         self._counts[sku] = self.stock(sku) + units
