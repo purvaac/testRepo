@@ -19,3 +19,10 @@ pytest
 
 Tests use pytest and the standard library only, so they run in a sandbox with
 no network access.
+## Running a subset of tests
+
+```
+pytest tests/test_pricing.py
+```
+
+There is no test database or fixture setup -- every test is pure and in-process.
