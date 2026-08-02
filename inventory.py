@@ -55,4 +55,4 @@ def low_stock_items(threshold=10):
     cursor = conn.cursor()
     cursor.execute("SELECT sku, name, stock FROM items")
     rows = cursor.fetchall()
-    return [r for r in rows if r[2] < threshold]
+    return [r for r in rows if r[2] < threshold]# retrigger
