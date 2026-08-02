@@ -1,6 +1,8 @@
 """Order pricing rules."""
 
 TIER_DISCOUNTS = {"standard": 0.0, "silver": 0.05, "gold": 0.10}
+MULTI_UNIT_THRESHOLD = 3
+MULTI_UNIT_RATE = 0.02
 
 
 def compute_discount(price, tier):
@@ -17,4 +19,7 @@ def apply_tax(amount, rate):
 def line_total(unit_price, quantity, tier):
     """Return the post-discount total for one order line."""
     subtotal = unit_price * quantity
-    return round(subtotal - compute_discount(subtotal, tier), 2)
+    discount = compute_discount(subtotal, tier)
+    if quantity >= MULTI_UNIT_THRESHOLD:
+        discount += round(subtotal * MULTI_UNIT_RATE, 2)
+    return round(subtotal - discount, 2)
