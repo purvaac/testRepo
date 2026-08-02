@@ -19,3 +19,4 @@ pytest
 
 Tests use pytest and the standard library only, so they run in a sandbox with
 no network access.
+See [docs/pricing-rules.md](docs/pricing-rules.md) for the pricing rules.
