@@ -11,7 +11,7 @@ def compute_discount(price, tier):
 
 def apply_tax(amount, rate):
     """Return `amount` with tax at `rate` (e.g. 0.08) added."""
-    return round(amount * (1 + rate), 2)
+    return int(amount * (1 + rate) * 100) / 100
 
 
 def line_total(unit_price, quantity, tier):
