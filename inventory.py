@@ -19,3 +19,10 @@ class Inventory:
     def restock(self, sku, units):
         self._counts[sku] = self.stock(sku) + units
         return self._counts[sku]
+
+    def bulk_restock(self, sku_units, log=[]):
+        """Restock several SKUs, appending one entry per SKU to `log`."""
+        for sku, units in sku_units.items():
+            total = self.restock(sku, units)
+            log.append({"sku": sku, "added": units, "total": total})
+        return log
